@@ -47,7 +47,7 @@ function App() {
           <input
             type="text"
             id="query"
-            placeholder="Enter city name"
+            placeholder="Enter City Name"
             value={query}
             onChange={e => setQuery(e.target.value)}
             className="w-full border rounded-md py-2 px-3 text-gray-700 mb-2"
