@@ -6,6 +6,7 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [aqi, setAqi] = useState(null);
   const [loading, setLoading] = useState(false);
+  const apikey = 'be07b6f90d4a53f96095fc7422822b6d';
 
   const fetchWeather = async () => {
     if (!query) return;
@@ -15,13 +16,13 @@ function App() {
     try {
       // fetch weather data
       const weatherResponse = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=be07b6f90d4a53f96095fc7422822b6d`
+        `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=${apikey}`
       );
       setWeather(weatherResponse.data);
 
       // fetch AQI data
       const aqiResponse = await axios.get(
-        `https://api.openweathermap.org/data/2.5/air_pollution?lat=${weatherResponse.data.coord.lat}&lon=${weatherResponse.data.coord.lon}&appid=be07b6f90d4a53f96095fc7422822b6d`
+        `https://api.openweathermap.org/data/2.5/air_pollution?lat=${weatherResponse.data.coord.lat}&lon=${weatherResponse.data.coord.lon}&appid=${apikey}`
       );
       setAqi(aqiResponse.data.list[0].main.aqi);
     } catch (error) {
@@ -68,7 +69,7 @@ function App() {
             <p>AQI: {aqi}</p>
           </div>
         ) : (
-          <p>Please enter a city name to see the weather.</p>
+          <p>Please enter a city name to see the weather there.</p>
         )}
       </div>
     </div>
